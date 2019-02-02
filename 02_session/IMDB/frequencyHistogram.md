@@ -8,18 +8,31 @@ follows: imdbRoot
 histogram : Spec
 histogram =
   let
+    cfg =
+      configure
+        << configuration (coView [vicoStroke Nothing ])
+        << configuration
+            (coAxis
+              [ axcoTicks False
+              , axcoDomain False
+              , axcoLabelAngle 0
+              ]
+            )
+
     enc =
       encoding
         << position X [ pName "IMDB_Rating",
                         pMType Ordinal,
-                        pBin []
+                        pBin [],
+                        pAxis []
                       ]
         << position Y [ pMType Quantitative,
-                        pAggregate opCount
+                        pAggregate opCount,
+                        pAxis []
                       ]
         << color [ mName "IMDB_Rating",
                    mMType Ordinal
                  ]
   in
-  toVegaLite [ data [], bar [], enc [] ]
+  toVegaLite [ cfg [], data [], circle [], enc [] ]
 ```
