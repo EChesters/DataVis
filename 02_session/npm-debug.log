@@ -1,0 +1,106 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'cairo' ]
+2 info using npm@4.1.2
+3 info using node@v7.6.0
+4 verbose config Skipping project config: /Users/EChesters/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData cairo
+9 silly fetchNamedPackageData cairo
+10 silly mapToRegistry name cairo
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data Result {
+13 silly mapToRegistry   raw: 'cairo',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'cairo',
+13 silly mapToRegistry   name: 'cairo',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/cairo
+15 verbose request uri https://registry.npmjs.org/cairo
+16 verbose request no auth needed
+17 info attempt registry request try #1 at 11:03:35 AM
+18 verbose request id acab8b91229bdc29
+19 http request GET https://registry.npmjs.org/cairo
+20 http 404 https://registry.npmjs.org/cairo
+21 verbose headers { date: 'Wed, 30 Jan 2019 11:03:36 GMT',
+21 verbose headers   'content-type': 'application/json',
+21 verbose headers   'content-length': '21',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'set-cookie': [ '__cfduid=d45c2a51698d06fcadb776bc2814fe0411548846215; expires=Thu, 30-Jan-20 11:03:35 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+21 verbose headers   'cf-cache-status': 'MISS',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   'cf-ray': '4a1373f15a356a3d-LHR',
+21 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+21 verbose headers   vary: 'accept-encoding, accept',
+21 verbose headers   server: 'cloudflare' }
+22 silly get cb [ 404,
+22 silly get   { date: 'Wed, 30 Jan 2019 11:03:36 GMT',
+22 silly get     'content-type': 'application/json',
+22 silly get     'content-length': '21',
+22 silly get     connection: 'keep-alive',
+22 silly get     'set-cookie': [ '__cfduid=d45c2a51698d06fcadb776bc2814fe0411548846215; expires=Thu, 30-Jan-20 11:03:35 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+22 silly get     'cf-cache-status': 'MISS',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'cf-ray': '4a1373f15a356a3d-LHR',
+22 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+22 silly get     vary: 'accept-encoding, accept',
+22 silly get     server: 'cloudflare' } ]
+23 silly fetchPackageMetaData Error: Not found : cairo
+23 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:304:12)
+23 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:292:14)
+23 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:14)
+23 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:186:22)
+23 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+23 silly fetchPackageMetaData     at Request.emit (events.js:192:7)
+23 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+23 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+23 silly fetchPackageMetaData     at Request.emit (events.js:189:7)
+23 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1001:12)
+23 silly fetchPackageMetaData  error for cairo { Error: Not found : cairo
+23 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:304:12)
+23 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:292:14)
+23 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:14)
+23 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:186:22)
+23 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+23 silly fetchPackageMetaData     at Request.emit (events.js:192:7)
+23 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+23 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+23 silly fetchPackageMetaData     at Request.emit (events.js:189:7)
+23 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1001:12) pkgid: 'cairo', statusCode: 404, code: 'E404' }
+24 silly rollbackFailedOptional Starting
+25 silly rollbackFailedOptional Finishing
+26 silly runTopLevelLifecycles Finishing
+27 silly install printInstalled
+28 verbose stack Error: Not found : cairo
+28 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:304:12)
+28 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:292:14)
+28 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:14)
+28 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:186:22)
+28 verbose stack     at emitTwo (events.js:106:13)
+28 verbose stack     at Request.emit (events.js:192:7)
+28 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+28 verbose stack     at emitOne (events.js:96:13)
+28 verbose stack     at Request.emit (events.js:189:7)
+28 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1001:12)
+29 verbose statusCode 404
+30 verbose pkgid cairo
+31 verbose cwd /Users/EChesters/Programming/DataVis/02_session
+32 error Darwin 18.2.0
+33 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "cairo"
+34 error node v7.6.0
+35 error npm  v4.1.2
+36 error code E404
+37 error 404 Not found : cairo
+38 error 404
+39 error 404 'cairo' is not in the npm registry.
+40 error 404 You should bug the author to publish it (or use the name yourself!)
+41 error 404 Note that you can also install from a
+42 error 404 tarball, folder, http url, or git url.
+43 verbose exit [ 1, true ]
