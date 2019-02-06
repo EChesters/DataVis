@@ -40,3 +40,17 @@ myColour : String
 myColour =
   favouriteColour "cyan"
 ```
+
+### Function to concatenate 3 strings
+
+```elm {l}
+concatenate : String -> String -> String -> String
+concatenate sOne sTwo sThree =
+  sOne ++ " " ++ sTwo ++ " " ++ sThree
+```
+
+```elm{l, raw}
+concatendatedStrings : String
+concatendatedStrings =
+  concatenate "I" "need" "food"
+```
