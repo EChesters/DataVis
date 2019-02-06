@@ -22,3 +22,21 @@ listOne : List Int
 listOne =
   addsTen [1, 2, 3, 4, 5]
 ```
+
+### A function to double each list item
+
+```elm {l}
+doubleItem : List Int -> List Int
+doubleItem mySecondList =
+  let
+    double num =
+      num * 2
+  in
+  List.map double mySecondList
+```
+
+```elm{l=hidden, raw}
+listTwo : List Int
+listTwo =
+  doubleItem [5, 6, 7, 8, 9, 10]
+```
