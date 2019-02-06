@@ -40,3 +40,21 @@ listTwo : List Int
 listTwo =
   doubleItem [5, 6, 7, 8, 9, 10]
 ```
+
+### A function to find sum of squares of all list items
+
+```elm {l}
+sumSquares : List Float -> Float
+sumSquares thisList =
+  let
+    mySqrt num =
+      sqrt num
+  in
+  List.sum (List.map mySqrt thisList)
+```
+
+```elm {l=hidden, raw}
+results : Float
+results =
+  sumSquares [9, 25, 16, 36]
+```
