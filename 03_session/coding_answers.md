@@ -13,7 +13,7 @@ multiply firstNum secondNum =
   firstNum * secondNum
 ```
 
-```elm {l, raw}
+```elm {l=hidden, raw}
 result : Int
 result =
   multiply 5 3
@@ -35,7 +35,7 @@ favouriteColour colour =
   "My favourite colour is " ++ colour
 ```
 
-```elm {l, raw}
+```elm {l=hidden, raw}
 myColour : String
 myColour =
   favouriteColour "cyan"
@@ -49,7 +49,7 @@ concatenate sOne sTwo sThree =
   sOne ++ " " ++ sTwo ++ " " ++ sThree
 ```
 
-```elm{l, raw}
+```elm{l=hidden, raw}
 concatendatedStrings : String
 concatendatedStrings =
   concatenate "I" "need" "food"
@@ -63,7 +63,7 @@ squareRoot numOne numTwo =
   sqrt (numOne + numTwo)
 ```
 
-```elm {l, raw}
+```elm {l=hidden, raw}
 sqrtResult : Float
 sqrtResult =
   squareRoot 5 20
