@@ -54,3 +54,17 @@ concatendatedStrings : String
 concatendatedStrings =
   concatenate "I" "need" "food"
 ```
+
+### Function to provide square root of two floats
+
+```elm {l}
+squareRoot : Float -> Float -> Float
+squareRoot numOne numTwo =
+  sqrt (numOne + numTwo)
+```
+
+```elm {l, raw}
+sqrtResult : Float
+sqrtResult =
+  squareRoot 5 20
+```
