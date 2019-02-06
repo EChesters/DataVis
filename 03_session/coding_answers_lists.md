@@ -58,3 +58,20 @@ results : Float
 results =
   sumSquares [9, 25, 16, 36]
 ```
+
+### A function to concatenate potato to each list item
+
+```elm {l}
+concatenatePotato : List String -> List String
+concatenatePotato myStrList =
+  let
+    concatPotato str =
+      str ++ " potato"
+  in List.map concatPotato myStrList
+```
+
+```elm {l=hidden, raw}
+myPotatoes : List String
+myPotatoes =
+  concatenatePotato ["I am a", "I like a", "sweet"]
+```
