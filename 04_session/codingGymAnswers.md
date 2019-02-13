@@ -62,3 +62,33 @@ result5 =
 ```
 
 ---
+
+### Task 2
+
+#### Anonymous function 1
+
+```elm {l, raw}
+inc10 : List Int
+inc10 =
+  List.range 1 10 |> List.map (\x -> x + 10)
+```
+
+#### Anonymous function 2
+
+```elm {l, raw}
+double : List Int
+double =
+  List.range 1 10 |> List.map (\x -> x * 2)
+```
+
+```elm {l, raw}
+sumSq : Int
+sumSq =
+  List.range 1 10 |> List.map (\x -> x * x) |> List.sum
+```
+
+```elm {l, raw}
+potato : List String
+potato =
+  ["my ", "I like ", "I want a "] |> List.map (\word -> word ++ " potato")
+```
