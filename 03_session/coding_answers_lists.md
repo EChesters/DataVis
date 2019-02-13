@@ -75,3 +75,30 @@ myPotatoes : List String
 myPotatoes =
   concatenatePotato ["I am a", "I like a", "sweet"]
 ```
+
+### A function that creates a list of even numbers from 2 to that number
+
+```elm {l}
+tempList : Int -> List Int
+tempList highestVal =
+    List.range 2 highestVal
+
+evenNumList : List Int -> List Int
+evenNumList tempList2 =
+  List.filterMap isEven tempList2
+
+isEven : Int -> List Int
+isEven n =
+  if (n // 2) == 0 then
+    List.append n
+
+  else
+    Nothing
+
+```
+
+```elm {l=hidden, raw}
+myEvenList : List Int
+myEvenList =
+  tempList 6
+```
