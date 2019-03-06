@@ -59,6 +59,8 @@ In his highly influential paper, [Shneiderman (1996)](#references) suggested tha
 >
 > Overview first, zoom and filter, then details-on-demand
 
+**MY NOTE:** He saw this mantra as a framework for how people interact with data visualizations.
+
 He went on to suggest that these were part of seven related "task-domain information actions" undertaken by users of successful data visualizations (quoted from Shneiderman (1996), p.2):
 
 - **Overview**: gain an overview of the entire collection [of data].
@@ -121,6 +123,8 @@ cycleHiresCustomTT =
     toVegaLite [ width 540, data [], enc [], bar [] ]
 ```
 
+**MY NOTE:** toolip uses t to mean tex rather than m. B = full month name in the tooltip encoding
+
 Note also the use of [d3 text formatting codes](https://github.com/d3/d3-time-format#locale_format) in line 12 to show a more friendly month-year format for the temporal data.
 
 {(infobox|} If you want any form of interaction to take place in your visualization, such as those in this session, you should always add the `interactive` tag to the code block header that generates the specification. If you know your visualization should be static, avoid adding the `interactive` tag in order to save on computational resources.{|infobox)}
@@ -173,8 +177,8 @@ cycleHiresInterval =
                 << position Y [ pName "AvHireTime", pMType Quantitative ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mStr "red" ]
-                        [ mStr "lightgrey" ]
+                        [ mStr "red" ] -- turns red if first condition of being selected
+                        [ mStr "lightgrey" ] -- turns grey if not selected
                     ]
     in
     toVegaLite
@@ -186,6 +190,8 @@ cycleHiresInterval =
         , point []
         ]
 ```
+
+**MY NOTE:** create a selection, give it a name "myBrush", seInterval = the type of selection interaction,
 
 {(task|}Try dragging a rectangle of the chart above to make a selection. Once created, you should be able to drag the interval selection around with the mouse and change its size with the mousewheel (or equivalent trackpad gesture).{|task)}
 
@@ -210,7 +216,7 @@ crimeData =
 
 
 crimeColours =
-    categoricalDomainMap
+    categoricalDomainMap -- setting up colours per line
         [ ( "Anti-social behaviour", "rgb(59,118,175)" )
         , ( "Burglary", "rgb(81,157,62)" )
         , ( "Criminal damage and arson", "rgb(141,106,184)" )
@@ -224,10 +230,10 @@ encHighlight =
     encoding
         << position X [ pName "month", pMType Temporal, pAxis [ axTitle "" ] ]
         << position Y [ pName "reportedCrimes", pMType Quantitative ]
-        << color
+        << color -- colou depends on the selection, rather than default state
             [ mSelectionCondition (selectionName "mySelection")
                 [ mName "crimeType", mMType Nominal, mScale crimeColours ]
-                [ mStr "black" ]
+                [ mStr "black" ] -- if not custom colour, turn it black (with opacity [see below])
             ]
         << opacity
             [ mSelectionCondition (selectionName "mySelection")
@@ -286,6 +292,8 @@ We can solve the first problem by adding the option [seNearest True](https://pac
   << select "mySelection" seSingle [ seNearest True ]
 ```
 
+**MY NOTE:** this line transforms the selection to make the interaction point of the data to be bigger.(accessibility issues for motor impairments though) Does this by selecting the nearest point, rather than increasing touch point.
+
 This will project the selection under the mouse pointer to the mark nearest to its location, rather than relying on a (small) mark being clicked on in its precise location.
 
 {(task|}Try adding `seNearest True` to the example above and observe the effect on interaction.{|task)}
@@ -308,6 +316,8 @@ domainProjection =
         , sel []
         ]
 ```
+
+**MY NOTE: ** seFields means that the selection is the related fields not just single selection.
 
 {(task|} How would you change the projection so that all crime types in the same month as the selected data point are highlighted? Try amending the example above to do this.{|task)}
 
@@ -376,8 +386,8 @@ selRadio =
                     seSingle
                     [ seFields [ "crimeType" ]
                     , seNearest True
-                    , seBind
-                        [ iRadio "crimeType"
+                    , seBind -- create binding between radio button and crimetype data field
+                        [ iRadio "crimeType" -- input name (label attached to buttons [also legend])
                             [ inName "Type of crime"
                             , inOptions
                                 [ "Anti-social behaviour"
@@ -399,6 +409,9 @@ selRadio =
         , sel []
         ]
 ```
+
+**MY NOTE:** Advantages to radio buttons: accessibility and better accuracy when selecting fields
+Disadvantages: radio buttons enforce single selection. Arguably more cognitive load switching between radio button selection and the data.
 
 {(task|}Try clicking on the radio buttons above to select a crime type. Also try clicking on one of the data points directly to confirm that the binding is two-way.{|task)}
 
@@ -462,6 +475,9 @@ selQuarter =
         ]
 ```
 
+**MY NOTE:** iRange is useful when order is not categories but s shown in an order
+**QUESTION:** How does data visualisation encourage users to ask questions about the data?
+
 To do this we have performed some minor data shaping by deriving a new data field `quarter` from the data using a [date-time expression](https://vega.github.io/vega/docs/expressions/#datetime-functions).
 When specifying an [iRange](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#iRange) we can optionally specify the minimum ([inMin](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#inMin)) and maximum ([inMax](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#inMax)) values permitted by the slider along with the step size ([inStep](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#inStep)) of each slider increment .
 
@@ -473,18 +489,18 @@ So far, all the selections we have explored have been used to generate a [condit
 - _scale binding_ : Bind the selection to a position scale.
 - _selection filtering_ : Only show the items selected in one or more views.
 
-### Scale Binding
+### Scale Binding **ZOOMING IN ON DATA**
 
 We have already seen how the grammar of interaction allows a _binding_ between some interaction event and some aspect of the visualization specification. So far we have seen this in action when binding an input component, for example a slider, to some data field.
 
-We can also bind an interaction to the _scale_ stage of Wilkinson's Grammar of Graphics with [seBindScales](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#seBindScales). This becomes particularly useful when binding an interval selection to a position scale. For example, we can control the time interval shown in the crime chart by binding the `X` position scale to an interval selection:
+We can also **bind an interaction to the _scale_ stage** of Wilkinson's Grammar of Graphics with [seBindScales](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#seBindScales). This becomes particularly useful when binding an interval selection to a position scale. For example, we can control the time interval shown in the crime chart by binding the `X` position scale to an interval selection:
 
 ```elm {v l interactive highlight=[6,18]}
 selDateInterval : Spec
 selDateInterval =
     let
         sel =
-            selection
+            selection -- seBindScales = binding the scale to x axis (default is x and y axis)
                 << select "mySelection" seInterval [ seBindScales, seEncodings [ chX ] ]
 
         enc =
@@ -549,7 +565,7 @@ cycleHiresFilter =
                 << select "myBrush" seInterval []
 
         trans =
-            transform
+            transform -- filter selection where referred to as myBrush
                 << filter (fiSelection "myBrush")
 
         enc =
@@ -634,6 +650,8 @@ crimesWithInteractivelegend =
         ]
 ```
 
+**MY NOTE:** this code allows an interactive legend to filter out based on the selection. (rather than filtering to only show something based on mouse location)
+
 The two charts are combined using [horizontal concatentation](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest/VegaLite#hConcat), which we will consider in more detail in the next session.
 
 {(task|}Try clicking / shift-clicking on the coloured squares to see the effect if filtering in the main chart. Note that unlike conditional encoding, filtering results in dynamic readjustment of the vertical axis range so we can see trends in the low-volume crimes like "Drugs" and "Robbery".{|task)}
@@ -664,7 +682,7 @@ rangeFilterExample =
                 << select "minThreshold"
                     seSingle
                     [ seFields [ "reportedCrimes" ]
-                    , seBind [ iRange "reportedCrimes" [ inName "Min", inMax 14000 ] ]
+                    , seBind [ iRange "reportedCrimes" [ inName "Min", inMax 14000 ] ] -- binding GUI to a field
                     ]
 
         trans =
@@ -715,6 +733,8 @@ crossFilter =
         , specification (asSpec [ data [], layer [ specFull, specFiltered ] ])
         ]
 ```
+
+**MY NOTE:** this code is supposed to work - means selection on one chart applies filter on another visualisation.
 
 {(task|}Try selecting one or more of the bars in one of the charts by dragging a rectangle to see the effect of cross filtering. In what circumstances might cross filtering be a useful in supporting data analysis?{|task)}
 
